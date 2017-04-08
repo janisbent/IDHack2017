@@ -1,6 +1,24 @@
 from django.db import models
+from django.contrib.contenttypes.models import ContentType
+from django.contrib.contenttypes.fields import GenericForeignKey
 
-class Person(models.Model):
+class NamedEntity(models.Model):
+    name = models.CharField(max_length=100)
+    desc = models.TextField(max_length=1000)
+
+    class Meta:
+        abstract = True
+
+class Case(NamedEntity):
+    pass
+
+class Village(NamedEntity):
+    case = models.ForeignKey(Case, on_delete=models.CASCADE)
+
+class Group(NamedEntity):
+    village = models.ForeignKey(Village, on_delete=models.CASCADE, null=True)
+
+class Person(NamedEntity):
     CHILD = "CH"
     TEENAGER = "TE"
     YOUNG_ADULT = "YA"
@@ -23,14 +41,16 @@ class Person(models.Model):
         (FEMALE, "Female")
     )
 
-    name = models.CharField(max_length=100)
-    bio = models.TextField(max_length=1000)
     age = models.CharField(max_length=2, choices=AGE_CHOICES, default=ADULT)
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES, default=MALE)
+    village = models.ForeignKey(Village, on_delete=models.CASCADE, null=True)
 
 class Relationship(models.Model):
     status = models.IntegerField(default=0)
     strength = models.IntegerField(default=0)
-    person1 = models.ForeignKey(Person, on_delete=models.CASCADE, related_name="rel1")
-    person2 = models.ForeignKey(Person, on_delete=models.CASCADE, related_name="rel2")
+    content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE, null=True)
+    objid1 = models.PositiveIntegerField(default=0)
+    objid2 = models.PositiveIntegerField(default=0)
+    endpt1 = GenericForeignKey('content_type', 'objid1')
+    endpt2 = GenericForeignKey('content_type', 'objid2')
     details = models.TextField(max_length=500)
