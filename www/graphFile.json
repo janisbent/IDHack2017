@@ -1,14 +1,14 @@
 {
-  "nodes":[
-                {"id":"node1","group":1},
-                {"id":"node2","group":2},
-                {"id":"node3","group":3},
-                {"id":"node4","group":4},
-                {"id":"My node","group":4}
+        "name": "Burlington",
+        "desc": "Shining city on a hill",
+        "nodes":[
+                {"id":"Isaiah Mindich","group":1,"bio": "text","gender":"M","age":"AD"},
+                {"id":"Ben Janis","bio": "text","gender":"M","age":"AD"},
+                {"id":"Alex Nolte","bio": "text","gender":"M","age":"AD"}
         ],
         "links":[
-                {"source":2,"target":1,"value":1,"type":"PS"},
-                {"source":0,"target":2,"value":3,"type":"NG"},
-                {"source":0,"target":1,"value":10,"type":"NT"}
+                {"source":0,"target":2,"value":66,"type":"NG"},
+                {"source":0,"target":1,"value":2,"type":"NT"},
+                {"source":1,"target":2,"value":6,"type":"PS"}
         ]
 }
