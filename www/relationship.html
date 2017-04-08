@@ -1,0 +1,42 @@
+<!Doctype html>
+
+<html lang="eng">
+
+<head>
+    <meta charset="utf-8">
+    <title> Setup Relationship </title>
+    <link href="style.css" rel="stylesheet"/>
+</head>
+
+<body>
+    <h1> Relationship Entry Form</h1>
+    <form id="group_form" method="post" action="/person">
+        <p> 
+            <hr>
+            Who is this relationship between?
+            <div id="inhabitants"></div>
+
+            <br>
+            Notes: <br> <textarea name="bio" rows="4" cols="60"> </textarea>
+
+            <br> <br>
+            What is the quality of this relationship? <br>
+            <input type="radio" name="quality" value="positive"> Positive </input>
+            <input type="radio" name="quality" value="neutral"> Neutral </input>
+            <input type="radio" name="quality" value="negative"> Negative </input>
+            <br> <br>
+
+            How strong is this relationship? <br>
+            <input type="range" name="strength" min="0" max="100">
+
+            <br>
+            <button>Add Relationship</button>
+            <br>
+            <button type="submit" value="OK">Done entering relationships</button>
+            
+            <hr>
+
+        </p>
+    </form>
+</body>
+</html>

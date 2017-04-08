@@ -39,10 +39,47 @@ var group_form = '<form id="group_form" method="post" action="javascript:display
         '</p>'+
     '</form>';
 
+var relationship_form = '<form id="group_form" method="post" action="javascript:display_rel()">'+
+        '<p>'+ 
+            '<hr>'+
+            'Who is this relationship between?'+
+            '<div id="inhabitants"></div>'+
+            '<br>'+
+            'Notes: <br> <textarea name="bio" rows="4" cols="60"> </textarea>'+
+            '<br> <br>'+
+            'What is the quality of this relationship? <br>'+
+            '<input type="radio" name="quality" value="positive"> Positive </input>'+
+            '<input type="radio" name="quality" value="neutral"> Neutral </input>'+
+            '<input type="radio" name="quality" value="negative"> Negative </input>'+
+            '<br> <br>'+
+            'How strong is this relationship? <br>'+
+            '<input type="range" name="strength" min="0" max="100">'+
+            '<br>'+
+            '<button>Add Relationship</button>'+
+            '<br>'+
+            '<button type="submit" value="OK" onclick="javascript:close_form()">Done entering relationships</button>'+
+            '<hr>'+
+        '</p>'+
+    '</form>';
+
 var graph_data = [];
 var groups = [];
 var people = [];
+var relations = [];
 var gchecks = "";
+var options = "";
+
+
+function display_rel(){
+    var relstring = "Relationships:";
+    add_rel();
+
+}
+
+function add_rel(){
+    console.log($("input[name='box1'] option:selected").val());
+    var party1 = $("input[name='box1']").val();
+}
 
 function display_group(){
     add_group();
@@ -58,10 +95,11 @@ function display_group(){
 }
 
 function add_group(){
-    name = $("input[name='gname']").val();
-    bio = $("input[name='gbio'").val();
+    var name = $("input[name='gname']").val();
+    var bio = $("input[name='gbio'").val();
     groups.push({"name": name, "bio": bio});
 
+    options = options + "<option value='" + name + "'>" + name + "</option>";
     gchecks = gchecks + "<input type='checkbox' name='" + name +"'>" + name + "</input> <br>"; 
 }
 
@@ -78,6 +116,9 @@ function display_data() {
             gps.push(g.name);
         }
     });
+
+    // keep options up to date
+    options = options + "<option value='" + name + "'>" + name + "</option>";
 
     people.push({"name": name, "age": age, "gender":gender,
                  "influence": inf, "bio": bio, "groups": gps});
@@ -109,11 +150,18 @@ $(document).ready(function(){
 
     $("#person_enter").click(function(){
         open_form(person_form);
-
         $("#groups").html(gchecks);
     });
 
     $("#village_setup").click(function(){
         open_form(group_form);
-    })
+    });
+
+    $("#rel_add").click(function(){
+        open_form(relationship_form);
+        var box1 = "<select name='box1'>" + options + "</select>";
+        var box2 = "<select name='box2'>" + options + "</select>";
+        $("#inhabitants").html(box1 + " " + box2);
+    });
+
 });
