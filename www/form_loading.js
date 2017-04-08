@@ -42,6 +42,7 @@ var group_form = '<form id="group_form" method="post" action="javascript:display
 var graph_data = [];
 var groups = [];
 var people = [];
+var gchecks = "";
 
 function display_group(){
     add_group();
@@ -60,6 +61,8 @@ function add_group(){
     name = $("input[name='gname']").val();
     bio = $("input[name='gbio'").val();
     groups.push({"name": name, "bio": bio});
+
+    gchecks = gchecks + "<input type='checkbox' name='" + name +"'>" + name + "</input> <br>"; 
 }
 
 function display_data() {
@@ -68,12 +71,19 @@ function display_data() {
     var name   = $("input[name='name']").val();
     var bio    = $("input[name='bio']").val();
     var inf    = $("input[name='influence']").val();
+    var gps    = [];
+
+    groups.map(function(g){
+        if($("input[name='" + g.name + "']:checked").val() == "on"){
+            gps.push(g.name);
+        }
+    });
 
     people.push({"name": name, "age": age, "gender":gender,
-                 "influence": inf, "bio": bio});
+                 "influence": inf, "bio": bio, "groups": gps});
 
-    var informative = name + ", " + gender + ", " + age + " influence: " + inf;  
-    var new_dataset = $('#dataset').html() + "<br>" + informative;
+    var informative = name + ", " + gender + ", " + age + " influence: " + inf + "<br> Member of: " + gps;  
+    var new_dataset = $('#dataset').html() + "<br>" + informative + "<br>";
     $('#dataset').html(new_dataset);
 
     close_form();
@@ -99,6 +109,8 @@ $(document).ready(function(){
 
     $("#person_enter").click(function(){
         open_form(person_form);
+
+        $("#groups").html(gchecks);
     });
 
     $("#village_setup").click(function(){
