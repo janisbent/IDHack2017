@@ -44,6 +44,7 @@ class Person(NamedEntity):
     age = models.CharField(max_length=2, choices=AGE_CHOICES, default=ADULT)
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES, default=MALE)
     village = models.ForeignKey(Village, on_delete=models.CASCADE, null=True)
+    group = models.ForeignKey(Group, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return self.name

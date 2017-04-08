@@ -10,8 +10,8 @@ var person_form = '  <form id="person_form" method="post" action="javascript:dis
             '<br> ' +
             '<br> Age: ' +
             '<br> <input type="radio" name="age" value="child"> Child </input> ' +
-            '     <input type="radio" name="age" value="teen"> Teenager </input> ' + 
-            '     <input type="radio" name="age" value="young adult"> Young adult </input> ' + 
+            '     <input type="radio" name="age" value="teen"> Teenager </input> ' +
+            '     <input type="radio" name="age" value="young adult"> Young adult </input> ' +
             '     <input type="radio" name="age" value="adult"> Adult </input> ' +
             '     <input type="radio" name="age" value="old"> Elder </input> ' +
             '<br> ' +
@@ -40,7 +40,7 @@ var group_form = '<form id="group_form" method="post" action="javascript:display
     '</form>';
 
 var relationship_form = '<form id="group_form" method="post" action="javascript:display_rel()">'+
-        '<p>'+ 
+        '<p>'+
             ' '+
             'Who is this relationship between?'+
             '<div id="inhabitants"></div>'+
@@ -91,9 +91,11 @@ function add_rel(){
     var newrel = {"party1":party1, "party2":party2, "quality":quality,
                     "notes":notes, "strength":strength};
     relations.push();
-    return newrel;
 
-    update_server("/add_rel");
+
+    update_server("./add_rel/", JSON.stringify(newrel));
+
+    return newrel;
 }
 
 function display_group(){
@@ -117,7 +119,7 @@ function add_group(){
     options = options + "<option name='" + name + "'value='" + name + "'>" + name + "</option>";
     gchecks = gchecks + "<input type='checkbox' name='" + name +"'>" + name + "</input> <br>";
 
-    update_server("/add_group"); 
+    update_server("./add_group/", JSON.stringify({"name": name, "bio":  bio}));
 }
 
 
@@ -142,16 +144,18 @@ function display_data() {
     people.push({"name": name, "age": age, "gender":gender,
                  "influence": inf, "bio": bio, "groups": gps});
 
-    var informative = name + ", " + gender + ", " + age + " influence: " + inf + ", <br> Member of: " + gps;  
+    var informative = name + ", " + gender + ", " + age + " influence: " + inf + ", <br> Member of: " + gps;
     var new_dataset = $('#dataset').html() + "<br>" + informative + "<br>";
     $('#dataset').html(new_dataset);
 
     close_form();
 
     $('#form').html(person_form);
-    update_server("/add_person");
+    update_server("./add_person/", JSON.stringify({"name": name, "age": age,
+                                                   "gender":gender,
+                                                   "influence": inf, "bio": bio,
+                                                   "groups": gps}));
 }
-
 
 function close_form(form){
     $('#form').hide();

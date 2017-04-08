@@ -32,6 +32,7 @@ def jquery(request):
     response = HttpResponse(content=f, content_type='text/javascript')
     return response
 
+
 def css(request):
     style = open('graphs/templates/graphs/style.css', 'r')
     response = HttpResponse(content=style, content_type='text/css')
