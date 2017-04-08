@@ -6,19 +6,28 @@
     <meta charset="utf-8">
     <title> Data Handling </title>
     <link href="style.css" rel="stylesheet"/>
+    <script src="jquery-3.2.0.js"></script>
+    <script src="form_loading.js"></script>
 </head>
 
 
 <body>
+    <iframe name="hiddenFrame" class="hide"></iframe>
     <h1> Search for Common Ground Data Entry </h1>
-    <p> Do you want to enter a group, or an individual
-        <ul>         
-            <a href="group.html"> Enter a group" </a>
-            <a href="person.html"> Enter a person </a>
-        </ul>
+    <p> <div class="option"> Do you want to enter a group, or an individual
+        <br>
+        <button id="village_setup"> Set up village Groups </button>
+        <br>
+        <button id="person_enter"> Enter a person </button>
+        <br>
+        <button id="group_add"> Add people to a group </button>
+        <br>
+        <button id="rel_add"> Add relationships </button>
+        </div>
+        <div id="form"></div>
     </p>
 
-    <div id="dataset"> Dataset will go here </div>
+    <div id="dataset"> Entered People: </div>
 
 
 <!-- 
