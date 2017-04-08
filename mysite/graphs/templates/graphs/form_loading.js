@@ -45,7 +45,7 @@ var relationship_form = '<form id="group_form" method="post" action="javascript:
             'Who is this relationship between?'+
             '<div id="inhabitants"></div>'+
             '<br>'+
-            'Notes: <br> <textarea name="bio" rows="4" cols="60"> </textarea>'+
+            'Notes: <br> <textarea name="notes" rows="4" cols="60"> </textarea>'+
             '<br> <br>'+
             'What is the quality of this relationship? <br>'+
             '<input type="radio" name="quality" value="positive"> Positive </input>'+
@@ -77,8 +77,11 @@ function display_rel(){
 }
 
 function add_rel(){
-    console.log($("input[name='box1'] option:selected").val());
-    var party1 = $("input[name='box1']").val();
+    var party1 = $("#box1").val();
+    var party2 = $("#box2").val();
+    var quality = $("input[name='quality']:checked").val();
+    var notes = $("input[name='notes']").val();
+    var strength = $("input[name='strength'").val();
 }
 
 function display_group(){
@@ -99,9 +102,10 @@ function add_group(){
     var bio = $("input[name='gbio'").val();
     groups.push({"name": name, "bio": bio});
 
-    options = options + "<option value='" + name + "'>" + name + "</option>";
+    options = options + "<option name='" + name + "'value='" + name + "'>" + name + "</option>";
     gchecks = gchecks + "<input type='checkbox' name='" + name +"'>" + name + "</input> <br>"; 
 }
+
 
 function display_data() {
     var gender = $("input[name='gender']:checked").val();
@@ -159,8 +163,8 @@ $(document).ready(function(){
 
     $("#rel_add").click(function(){
         open_form(relationship_form);
-        var box1 = "<select name='box1'>" + options + "</select>";
-        var box2 = "<select name='box2'>" + options + "</select>";
+        var box1 = "<select id='box1'>" + options + "</select>";
+        var box2 = "<select id='box2'>" + options + "</select>";
         $("#inhabitants").html(box1 + " " + box2);
     });
 
