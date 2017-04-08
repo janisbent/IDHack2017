@@ -1,0 +1,310 @@
+{
+    "name": "Burlington",
+    "desc": "Shining city on a hill",
+        "nodes": [
+            {
+                "id": "Isaiah Mindich",
+                "bio": "text",
+                "gender": "Male",
+                "age": "Child",
+                "db_id": 0,
+		"group":"IDHack",
+		"importance":"5"
+            },
+            {
+                "id": "Ben Janis",
+                "bio": "text",
+                "gender": "Male",
+                "age": "Child",
+                "db_id": 1,
+		"group":"IDHack",
+		"importance":"10"
+            },
+            {
+                "id": "Emily Lin",
+                "bio": "text",
+                "gender": "Female",
+                "age": "Teen",
+                "db_id": 2,
+		"group":"IDHack",
+		"importance":"1"
+            },
+            {
+                "id": "Aditya",
+                "bio": "text",
+                "gender": "Male",
+                "age": "Teen",
+                "db_id": 3,
+		"group":"IDHack",
+		"importance":"2"
+            },
+            {
+                "id": "Alex Nolte",
+                "bio": "text",
+                "gender": "Male",
+                "age": "Young Adult",
+                "db_id": 4,
+		"group":"IDHack",
+		"importance":"6"
+            },
+            {
+                "id": "Omar",
+                "bio": "text",
+                "gender": "Male",
+                "age": "Young Adult",
+                "db_id": 5,
+		"group":"Wren",
+		"importance":"3"
+            },
+            {
+                "id": "Joe",
+                "bio": "text",
+                "gender": "Male",
+                "age": "Adult",
+                "db_id": 6,
+		"group":"Wren",
+		"importance":"9"
+            },
+            {
+                "id": "Grace",
+                "bio": "text",
+                "gender": "Female",
+                "age": "Adult",
+                "db_id": 7,
+		"group":"Woman",
+		"importance":"4"
+            },
+            {
+                "id": "Shannon",
+                "bio": "text",
+                "gender": "Female",
+                "age": "Elder",
+                "db_id": 8,
+		"group":"Woman",
+		"importance":"2"
+            },
+            {
+                "id": "Nelly",
+                "bio": "text",
+                "gender": "Male",
+                "age": "Elder",
+                "db_id": 9,
+		"group":"Wren",
+		"importance":"6"
+            },
+            {
+                "id": "Elias",
+                "bio": "text",
+                "gender": "Male",
+                "age": "Elder",
+                "db_id": 10,
+		"group":"Other",
+		"importance":"3"
+            }
+        ],
+        "links": [
+            {
+                "source": 0,
+                "target": 2,
+                "sname":"Isaiah Mindich",
+                "tname":"Emily Lin",
+                "type": "Negative",
+                "value": 66,
+                "notes": "text",
+		"samegroup":"T",
+		"sameage":"F",
+		"samegend":"F"
+            },
+            {
+                "source": 0,
+                "target": 4,
+                "sname":"Isaiah Mindich",
+                "tname":"Alex Nolte",
+                "type": "Negative",
+                "value": 100,
+                "notes": "text",
+		"samegroup":"T",
+		"sameage":"F",
+		"samegend":"T"
+            },
+            {
+                "source": 1,
+                "target": 4,
+                "sname":"Ben Janis",
+                "tname":"Alex Nolte",
+                "type": "Neutral",
+                "value": 2,
+                "notes": "text",
+		"samegroup":"T",
+		"sameage":"F",
+		"samegend":"T"
+            },
+            {
+                "source": 4,
+                "target": 3,
+                "sname":"Alex Nolte",
+                "tname":"Aditya",
+                "type": "Positive",
+                "value": 100,
+                "notes": "text",
+		"samegroup":"T",
+		"sameage":"F",
+		"samegend":"T"
+            },
+            {
+                "source": 2,
+                "target": 3,
+                "sname":"Emily Lin",
+                "tname":"Aditya",
+                "type": "Neutral",
+                "value": 2,
+                "notes": "text",
+		"samegroup":"T",
+		"sameage":"T",
+		"samegend":"F"
+            },
+            {
+                "source": 0,
+                "target": 1,
+                "sname":"Isaiah Mindich",
+                "tname":"Ben Janis",
+                "type": "Neutral",
+                "value": 2,
+                "notes": "text",
+		"samegroup":"T",
+		"sameage":"T",
+		"samegend":"T"
+            },
+            {
+                "source": 5,
+                "target": 1,
+                "sname":"Omar Sanchez",
+                "tname":"Ben Janis",
+                "type": "Neutral",
+                "value": 2,
+                "notes": "text",
+		"samegroup":"F",
+		"sameage":"F",
+		"samegend":"T"
+            },
+            {
+                "source": 5,
+                "target": 2,
+                "sname":"Omar Sanchez",
+                "tname":"Emily Lin",
+                "type": "Negative",
+                "value": 25,
+                "notes": "text",
+		"samegroup":"F",
+		"sameage":"F",
+		"samegend":"F"
+            },
+            {
+                "source": 10,
+                "target": 6,
+                "sname":"Elias",
+                "tname":"Joe",
+                "type": "Positive",
+                "value": 25,
+		"samegroup":"F",
+		"sameage":"F",
+		"samegend":"T"
+            },
+            {
+                "source": 9,
+                "target": 5,
+                "sname":"Nelly",
+                "tname":"Omar",
+                "type": "Neutral",
+                "value": 25,
+                "notes": "text",
+		"samegroup":"T",
+		"sameage":"F",
+		"samegend":"T"
+            },
+            {
+                "source": 9,
+                "target": 2,
+                "sname":"Nelly",
+                "tname":"Emily Lin",
+                "type": "Positive",
+                "value": 25,
+                "notes": "text",
+		"samegroup":"F",
+		"sameage":"F",
+		"samegend":"F"
+            },
+            {
+                "source": 8,
+                "target": 4,
+                "sname":"Shannon",
+                "tname":"Alex Nolte",
+                "type": "Negative",
+                "value": 25,
+                "notes": "text",
+		"samegroup":"F",
+		"sameage":"F",
+		"samegend":"F"
+            },
+            {
+                "source": 7,
+                "target": 3,
+                "sname":"Grace",
+                "tname":"Aditya",
+                "type": "Positive",
+                "value": 25,
+                "notes": "text",
+		"samegroup":"F",
+		"sameage":"F",
+		"samegend":"F"
+            },
+            {
+                "source": 6,
+                "target": 5,
+                "sname":"Joe",
+                "tname":"Omar",
+                "type": "Negative",
+                "value": 5,
+                "notes": "text",
+		"samegroup":"T",
+		"sameage":"F",
+		"samegend":"T"
+            },
+            {
+                "source": 8,
+                "target": 7,
+                "sname":"Shannon",
+                "tname":"Grace",
+                "type": "Neutral",
+                "value": 25,
+                "notes": "text",
+		"samegroup":"T",
+		"sameage":"F",
+		"samegend":"T"
+            },
+            {
+                "source": 6,
+                "target": 0,
+                "sname":"Joe",
+                "tname":"Isaiah Mindich",
+                "type": "Neutral",
+                "value": 5,
+                "notes": "text",
+		"samegroup":"F",
+		"sameage":"F",
+		"samegend":"T"
+            },
+            {
+                "source": 7,
+                "target": 2,
+                "sname":"Grace",
+                "tname":"Emily Lin",
+                "type": "Positive",
+                "value": 6,
+                "notes": "text",
+		"samegroup":"F",
+		"sameage":"F",
+		"samegend":"T"
+            }
+        ]
+}
