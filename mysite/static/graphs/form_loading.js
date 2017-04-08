@@ -206,6 +206,7 @@ $(document).ready(function(){
         var box1 = "<select id='box1'>" + per_ops + "</select>";
         var box2 = "<select id='box2'>" + per_ops + "</select>";
         $("#inhabitants").html(box1 + " " + box2);
+        is_person = true;
     });
 
     $("#grp_add").click(function(){
@@ -213,5 +214,6 @@ $(document).ready(function(){
         var box1 = "<select id='box1'>" + gr_ops + "</select>";
         var box2 = "<select id='box2'>" + gr_ops + "</select>";
         $("#inhabitants").html(box1 + " " + box2);
+        is_person = false;
     });
 });
