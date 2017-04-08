@@ -1,0 +1,90 @@
+<!Doctype html>
+
+<html lang="eng">
+
+<head>
+    <meta charset="utf-8">
+    <title> Data Handling </title>
+    <link href="../../../static/graphs/style.css" rel="stylesheet"/>
+    <script src="../../../static/graphs/jquery-3.2.0.js"></script>
+    <script src="../../../static/graphs/form_loading.js"></script>
+    <script>
+   		function setURL(url){
+    		document.getElementById('iframe').src = url;
+		} 
+    </script>
+</head>
+
+
+<body>
+    <br>
+    <a href="./index.html"><img id="logo" src="../../../static/graphs/logo.png" alt="Search for Common Ground"/></a>
+    <h1> Somerville Data Entry </h1>
+    <p> <div class="option"> <span class="header"> <b> Select Data Entry Form: </b> </span>
+
+        <button id="village_setup"> Set up Groups </button>
+
+        <button id="person_enter"> Add a Person </button>
+
+        <button id="rel_add"> Add Relationships </button>
+        </div>
+        <div id="form"></div>
+    </p>
+
+    <span class="header"> <b> Village Data: </b> <br> </span>
+    <table>
+        <tr>
+            <th><b>Individuals</b></th>
+            <th>11</th>
+            <th><b>Groups</b></th>
+            <th>6</th>
+        </tr>
+        <tr>
+            <th><b>Individual relationships</b></th>
+            <th>17</th>
+            <th><b>Group relationships</b></th>
+            <th>8</th>
+        </tr>
+        <tr>
+            <th><b>Positive individual relationships</b></th>
+            <th>5</th>
+            <th><b>Positive group relationships</b></th>
+            <th>1</th>
+        </tr>
+        <tr>
+            <th><b>Negative individual relationships</b></th>
+            <th>6</th>
+            <th><b>Negative group relationships</b></th>
+            <th>3</th>
+        </tr>
+    </table>
+
+    <p> <div class="option"> <span class="header"> <b> Organize by: </b> </span>
+        <a href="./indgraph.html" target="frame"> Individual: Group </a> --
+        <a href="./agegraph.html" target="frame"> Individual: Age </a> -- 
+        <a href="./mfgraph.html" target="frame"> Individual: Gender </a> -- 
+        <a href="./groupgraph.html" target="frame"> Group </a> -- 
+        <a href="./neggraph.html" target="frame"> Negative </a> -- 
+        <a href="./posgraph.html" target="frame"> Positive </a>
+    </p>
+
+    <iframe name="frame" id="frame" sandbox="allow-popups allow-scripts allow-forms allow-same-origin" src="./indgraph.html" scrolling="no" marginwidth="auto" margin-bottom="40" height="650" width="962">
+<!--
+    We need name, gender
+    Age (Child, teenager, adult, old)
+
+    Groups
+
+    Bio information
+
+    List of Relationships
+        Structure for the relationship
+
+    Conflict status (victim or instigator)
+    List of conficts if wanted
+
+    Influence
+    Relationships
+-->
+</body>
+</html>

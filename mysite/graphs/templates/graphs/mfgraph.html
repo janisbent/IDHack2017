@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<script src="http://d3js.org/d3.v2.min.js?2.9.3"></script>
+<style>
+
+.link {
+  stroke: grey;
+}
+
+#Positive {
+  fill: green;
+}
+
+.link.Positive {
+  stroke: green;
+}
+
+#Negative {
+  fill: red;
+}
+
+.link.Negative {
+  stroke: red;
+}
+
+#Neutral {
+  fill: grey;
+}
+
+.link.Neutral {
+  stroke: grey;
+}
+
+.node text {
+  font: 15px sans-serif;
+  stroke:#333;
+  cursos:pointer;
+}
+
+.node circle{
+  stroke:#fff;
+  stroke-width:2px;
+  fill: blue;
+}
+
+</style>
+<body>
+<script>
+
+// Frame dimensions
+var width = 962,
+    height = 650
+
+// Build frame
+var svg = d3.select("body").append("svg")
+    .attr("width", width)
+    .attr("height", height);
+
+// Create d3 force
+var force = d3.layout.force()
+  .gravity(.05)
+  .distance(function(d){
+	if (d.samegend == "T") 
+		return 70
+	else
+		return 350
+	})
+  .charge(-300)
+  .size([width, height]);
+
+// Loop through json
+d3.json("indcase.json", function(json) {
+  force
+    .nodes(json.nodes)
+    .links(json.links)
+    .start();
+
+  // Build link
+  var link = svg.selectAll(".link")
+    .data(json.links)
+    .enter().append("line")
+    .attr("class", function(d) { return "link " + d.type; } )
+    .style("stroke-width", function(d) { 
+	  if (d.type == "Negative") 
+		  return Math.sqrt(d.value) * 2; 
+	  else if (d.type == "Neutral")
+		  return 1
+	  else
+		  return Math.sqrt(d.value);
+	  });
+
+  // Add title to link
+  link.append("svg:title")
+     .text(function(d) { return d.sname + " <-> " + d.tname +
+                                "\nRelation: " + d.type +
+                                "\nStrength: " + d.value + 
+                                "\nNotes: " + d.notes })
+
+  // Build node
+  var node = svg.selectAll(".node")
+      .data(json.nodes)
+    .enter().append("g")
+      .attr("class", "node")
+      .call(force.drag);
+
+  // Add title to node
+  node.append("circle")
+    .attr("r", function(d) { return Math.sqrt(d.importance) * 5 })
+    .append("svg:title")
+    .text(function(d) { return "Name: " + d.id +
+                               "\nAge: " + d.age +
+                               "\nGender: " + d.gender +
+                               "\nGroup: " + d.group +
+                               "\nImportance: " + d.importance + "/10" +
+                               "\nBio: " + d.bio; });
+
+  // Add node label
+  node.append("text")
+      .attr("dx", 17)
+      .attr("dy", ".35em")
+      .text(function(d) { return d.id + ": " + d.gender});
+
+  // Turn on force
+  force.on("tick", function() {
+    link.attr("x1", function(d) { return d.source.x; })
+        .attr("y1", function(d) { return d.source.y; })
+        .attr("x2", function(d) { return d.target.x; })
+        .attr("y2", function(d) { return d.target.y; });
+
+  // Start transformations
+  node.attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
+  });
+});
+
+</script>
+
