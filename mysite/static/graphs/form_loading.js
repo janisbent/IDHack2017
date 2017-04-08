@@ -62,12 +62,16 @@ var relationship_form = '<form id="group_form" method="post" action="javascript:
         '</p>'+
     '</form>';
 
+
+
 var graph_data = [];
 var groups = [];
 var people = [];
 var relations = [];
 var gchecks = "";
-var options = "";
+var gr_ops = "";
+var per_ops = "";
+var is_person = false;
 
 
 function display_rel(){
@@ -86,14 +90,20 @@ function add_rel(){
     var party2 = $("#box2").val();
     var quality = $("input[name='quality']:checked").val();
     var notes = $("#bio").val();
-    var strength = $("input[name='strength'").val();
+    var strength = $("input[name='strength']").val();
 
     var newrel = {"party1":party1, "party2":party2, "quality":quality,
                     "notes":notes, "strength":strength};
     relations.push();
 
-
-    update_server("./add_rel/", JSON.stringify(newrel));
+    var req = "";
+    if(is_person){
+        req = "./add_per_rel/";
+    }
+    else{
+        req = "./add_grp_rel/";
+    }
+    update_server(req, JSON.stringify(newrel));
 
     return newrel;
 }
@@ -116,7 +126,7 @@ function add_group(){
     var bio = $("#bio").val();
     groups.push({"name": name, "bio": bio});
 
-    options = options + "<option name='" + name + "'value='" + name + "'>" + name + "</option>";
+    gr_ops = gr_ops + "<option name='" + name + "'value='" + name + "'>" + name + "</option>";
     gchecks = gchecks + "<input type='checkbox' name='" + name +"'>" + name + "</input> <br>";
 
     update_server("./add_group/", JSON.stringify({"name": name, "bio":  bio}));
@@ -139,7 +149,7 @@ function display_data() {
     });
 
     // keep options up to date
-    options = options + "<option value='" + name + "'>" + name + "</option>";
+    per_ops = per_ops + "<option value='" + name + "'>" + name + "</option>";
 
     people.push({"name": name, "age": age, "gender":gender,
                  "influence": inf, "bio": bio, "groups": gps});
@@ -190,10 +200,18 @@ $(document).ready(function(){
         open_form(group_form);
     });
 
-    $("#rel_add").click(function(){
+
+    $("#per_add").click(function(){
         open_form(relationship_form);
-        var box1 = "<select id='box1'>" + options + "</select>";
-        var box2 = "<select id='box2'>" + options + "</select>";
+        var box1 = "<select id='box1'>" + per_ops + "</select>";
+        var box2 = "<select id='box2'>" + per_ops + "</select>";
+        $("#inhabitants").html(box1 + " " + box2);
+    });
+
+    $("#grp_add").click(function(){
+        open_form(relationship_form);
+        var box1 = "<select id='box1'>" + gr_ops + "</select>";
+        var box2 = "<select id='box2'>" + gr_ops + "</select>";
         $("#inhabitants").html(box1 + " " + box2);
     });
 });
