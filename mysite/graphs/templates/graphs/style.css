@@ -1,18 +1,23 @@
 body{
-    background-color: #ffffcc;
+    background-color: #ccffff;
     font-family : helvetica;
     text-align  : left;
     font-size : 16px;
 }
 
-h1{
-    text-align : center;
+.header{
+    font-size : 16px;
+    font-style: bold;
 }
 
-.hide {
-    position:absolute;
-    top:-1px; 
-    left:-1px; 
-    width:1px; 
-    height:1px; 
+h1{
+    text-align : center;
+    font-size : 30px;
+}
+
+#logo{
+    height: auto;
+    width: auto;
+    max-height: 80px;
+    max-width: 300px;
 }

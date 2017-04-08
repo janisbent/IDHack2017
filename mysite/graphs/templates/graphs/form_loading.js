@@ -1,4 +1,4 @@
-var person_form = '<hr> <form id="person_form" method="post" action="javascript:display_data()">' +
+var person_form = '  <form id="person_form" method="post" action="javascript:display_data()">' +
         '<p>' +
             'Name: <input type="text" name="name" maxlength="30"/>' +
             '<div class="option-spacing"> </div>' +
@@ -23,11 +23,11 @@ var person_form = '<hr> <form id="person_form" method="post" action="javascript:
             '<br> ' +
             '<button id="submit" type="submit" value="OK">Submit</button> ' +
         '</p> ' +
-    '</form> <hr>';
+    '</form>  ';
 
 var group_form = '<form id="group_form" method="post" action="javascript:display_group()">' +
         '<p>' +
-            '<hr>'+
+            ' '+
             'Name: <input type="text" name="gname" maxlength="60"/> '+
             '<br> About this group: <br> <textarea id="bio" name="gbio" rows="4" cols="60"> </textarea>'+
             '<br>'+
@@ -35,13 +35,13 @@ var group_form = '<form id="group_form" method="post" action="javascript:display
             '<br>'+
             '<button type="submit" value="OK" onclick="javascript:close_form()">Done Adding Groups </button>'+
             '<div id="groups"></div>'+
-            '<hr>'+
+            ' '+
         '</p>'+
     '</form>';
 
 var relationship_form = '<form id="group_form" method="post" action="javascript:display_rel()">'+
         '<p>'+ 
-            '<hr>'+
+            ' '+
             'Who is this relationship between?'+
             '<div id="inhabitants"></div>'+
             '<br>'+
@@ -58,7 +58,7 @@ var relationship_form = '<form id="group_form" method="post" action="javascript:
             '<button>Add Relationship</button>'+
             '<br>'+
             '<button type="submit" value="OK" onclick="javascript:close_form()">Done entering relationships</button>'+
-            '<hr>'+
+            ' '+
         '</p>'+
     '</form>';
 
@@ -71,7 +71,7 @@ var options = "";
 
 
 function display_rel(){
-    var relstring = "Relationships:";
+    $("#rels").show();
     newrel = add_rel();
 
     friendly = "<br>" + newrel.party1 + " and " + newrel.party2 + " have a " +
@@ -98,7 +98,7 @@ function add_rel(){
 
 function display_group(){
     add_group();
-    var groupstring = "Groups:";
+    var groupstring = "<b> Groups: </b>";
 
     groups.map(function(group){
         groupstring = groupstring + "<br>" + group.name;
@@ -122,6 +122,7 @@ function add_group(){
 
 
 function display_data() {
+    $('#dataset').show();
     var gender = $("input[name='gender']:checked").val();
     var age    = $("input[name='age']:checked").val();
     var name   = $("input[name='name']").val();
@@ -141,7 +142,7 @@ function display_data() {
     people.push({"name": name, "age": age, "gender":gender,
                  "influence": inf, "bio": bio, "groups": gps});
 
-    var informative = name + ", " + gender + ", " + age + " influence: " + inf + "<br> Member of: " + gps;  
+    var informative = name + ", " + gender + ", " + age + " influence: " + inf + ", <br> Member of: " + gps;  
     var new_dataset = $('#dataset').html() + "<br>" + informative + "<br>";
     $('#dataset').html(new_dataset);
 
@@ -164,14 +165,17 @@ function open_form(form){
 }
 
 function update_server(url, data){
-    $.post(url, data, function(){
-        console.log("served " + data);
+    $.post(url, data, function(response){
+        console.log("served "
+         + data);
     })
 }
 
 $(document).ready(function(){
     $('#form').html(person_form);
     $('#form').hide();
+    $('#dataset').hide();
+    $('#rels').hide();
 
     $("#person_enter").click(function(){
         open_form(person_form);
