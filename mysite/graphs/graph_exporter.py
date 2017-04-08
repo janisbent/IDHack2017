@@ -32,11 +32,35 @@ def export_village(v):
                                   'links' : export_person_links(v, index_mapping)}}
     return node_obj
 
-def export_graph(case_id):
+def export_graph(village_id):
     try:
-        case = Case.objects.get(pk=case_id)
+        v = Village.objects.get(pk=village_id)
     except:
         return None
 
+    return json.dumps(export_village(v), indent=4)
 
-    return json.dumps([export_village(v) for v in case.villages.all()], indent=4)
+def export_people(village_id):
+    try:
+        v = Village.objects.get(pk=village_id)
+    except:
+        return None
+
+    people = []
+    for p in v.person_set.all():
+        person = {'name' : p.name, 'bio' : p.desc, 'id' : p.id}
+        people.append(person)
+
+    return json.dumps(people, indent=4)
+
+def export_groups(village_id):
+    try:
+        v = Village.objects.get(pk=village_id)
+    except:
+        return None
+
+    groups = []
+    for g in v.group_set.all():
+        groups.append({'name' : g.name, 'desc' : g.desc, 'id' : g.id})
+
+    return json.dumps(groups, indent=4)
