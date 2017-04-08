@@ -1,0 +1,14 @@
+{
+  "nodes":[
+                {"id":"node1","group":1},
+                {"id":"node2","group":2},
+                {"id":"node3","group":3},
+                {"id":"node4","group":4},
+                {"id":"My node","group":4}
+        ],
+        "links":[
+                {"source":2,"target":1,"value":1,"type":"PS"},
+                {"source":0,"target":2,"value":3,"type":"NG"},
+                {"source":0,"target":1,"value":10,"type":"NT"}
+        ]
+}
