@@ -1,0 +1,114 @@
+{
+    "name": "Burlington",
+    "desc": "Shining city on a hill",
+        "nodes": [
+            {
+                "id": "Traditional Leaders",
+                "bio": "text",
+                "db_id": 0,
+		"group":0,
+		"importance":"10"
+            },
+            {
+                "id": "Women Leaders",
+                "bio": "text",
+                "db_id": 1,
+		"group":0,
+		"importance":"3"
+            },
+            {
+                "id": "Religious Leaders",
+                "bio": "text",
+                "db_id": 2,
+		"group":1,
+		"importance":"5"
+            },
+            {
+                "id": "Other Leaders",
+                "bio": "text",
+                "db_id": 3,
+		"group":2,
+		"importance":"2"
+            },
+            {
+                "id": "Goverment Officials",
+                "bio": "text",
+                "db_id": 4,
+		"group":0,
+		"importance":"6"
+            },
+            {
+                "id": "Youth leaders",
+                "bio": "text",
+                "db_id": 5,
+		"group":4,
+		"importance":"3"
+            }
+        ],
+        "links": [
+            {
+                "source": 0,
+                "target": 2,
+                "sname": "Traditional Leaders",
+                "tname": "Religious Leaders",
+                "type": "Negative",
+                "value": 66
+            },
+            {
+                "source": 0,
+                "target": 4,
+                "sname": "Traditional Leaders",
+                "tname": "Government Officials",
+                "type": "Negative",
+                "value": 100
+            },
+            {
+                "source": 1,
+                "target": 4,
+                "sname": "Women Leaders",
+                "tname": "Government Officials",
+                "type": "Neutral",
+                "value": 2
+            },
+            {
+                "source": 4,
+                "target": 3,
+                "sname": "Government Officials",
+                "tname": "Other Leaders",
+                "type": "Positive",
+                "value": 100
+            },
+            {
+                "source": 2,
+                "target": 3,
+                "sname": "Religious Leaders",
+                "tname": "Other Leaders",
+                "type": "Neutral",
+                "value": 2
+            },
+            {
+                "source": 0,
+                "target": 1,
+                "sname": "Traditional Leaders",
+                "tname": "Women Leaders",
+                "type": "Neutral",
+                "value": 2
+            },
+            {
+                "source": 5,
+                "target": 1,
+                "sname": "Youth Leaders",
+                "tname": "Women Leaders",
+                "type": "Neutral",
+                "value": 2
+            },
+            {
+                "source": 5,
+                "target": 2,
+                "sname": "Youth Leaders",
+                "tname": "Religious Leaders",
+                "type": "Negative",
+                "value": 25
+            }
+        ]
+}

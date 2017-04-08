@@ -1,3 +1,4 @@
 *.pyc
 mysite/graphs/migrations/*
 mysite/db.sqlite3
+*.swp

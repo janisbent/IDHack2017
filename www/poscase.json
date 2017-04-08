@@ -1,0 +1,130 @@
+{
+    "name": "Burlington",
+    "desc": "Shining city on a hill",
+        "nodes": [
+            {
+                "id": "Emily Lin",
+                "bio": "text",
+                "gender": "Female",
+                "age": "Teen",
+                "db_id": 0,
+		"group":"IDHack",
+		"importance":"1"
+            },
+            {
+                "id": "Aditya",
+                "bio": "text",
+                "gender": "Male",
+                "age": "Teen",
+                "db_id": 1,
+		"group":"IDHack",
+		"importance":"2"
+            },
+            {
+                "id": "Alex Nolte",
+                "bio": "text",
+                "gender": "Male",
+                "age": "Young Adult",
+                "db_id": 2,
+		"group":"IDHack",
+		"importance":"6"
+            },
+            {
+                "id": "Joe",
+                "bio": "text",
+                "gender": "Male",
+                "age": "Adult",
+                "db_id": 3,
+		"group":"Wren",
+		"importance":"9"
+            },
+            {
+                "id": "Grace",
+                "bio": "text",
+                "gender": "Female",
+                "age": "Adult",
+                "db_id": 4,
+		"group":"Woman",
+		"importance":"4"
+            },
+            {
+                "id": "Nelly",
+                "bio": "text",
+                "gender": "Male",
+                "age": "Elder",
+                "db_id": 5,
+		"group":"Wren",
+		"importance":"6"
+            },
+            {
+                "id": "Elias",
+                "bio": "text",
+                "gender": "Male",
+                "age": "Elder",
+                "db_id": 6,
+		"group":"Other",
+		"importance":"3"
+            }
+        ],
+        "links": [
+            {
+                "source": 2,
+                "target": 1,
+                "sname":"Alex Nolte",
+                "tname":"Aditya",
+                "type": "Positive",
+                "value": 100,
+                "notes": "text",
+		"samegroup":"T",
+		"sameage":"F",
+		"samegend":"T"
+            },
+            {
+                "source": 6,
+                "target": 3,
+                "sname":"Elias",
+                "tname":"Joe",
+                "type": "Positive",
+                "value": 25,
+		"samegroup":"F",
+		"sameage":"F",
+		"samegend":"T"
+            },
+            {
+                "source": 5,
+                "target": 0,
+                "sname":"Nelly",
+                "tname":"Emily Lin",
+                "type": "Positive",
+                "value": 25,
+                "notes": "text",
+		"samegroup":"F",
+		"sameage":"F",
+		"samegend":"F"
+            },
+            {
+                "source": 4,
+                "target": 1,
+                "sname":"Grace",
+                "tname":"Aditya",
+                "type": "Positive",
+                "value": 25,
+                "notes": "text",
+		"samegroup":"F",
+		"sameage":"F",
+		"samegend":"F"
+            },
+            {
+                "source": 4,
+                "target": 0,
+                "sname":"Grace",
+                "tname":"Emily Lin",
+                "type": "Positive",
+                "value": 6,
+                "notes": "text",
+		"samegroup":"F",
+		"sameage":"F",
+		"samegend":"T"
+            }
+        ]
+}
