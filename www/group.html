@@ -10,36 +10,18 @@
 
 <body>
     <h1> Group Entry Form</h1>
-    <form id="person_form" method="post" action="/person">
+    <form id="group_form" method="post" action="/person">
         <p> 
-            Name: <input type="text" name="name" maxlength="30"/> 
-            <div class="option-spacing"> </div>
-            <br> Personal Info: <br> <textarea name="bio" rows="4" cols="60"> </textarea>
-    
-            <br>            
-            <br> Gender:
-            <br> <input type="radio" name="gender" value="Male"> M </input>
-                 <input type="radio" name="gender" value="Female"> F </input>
-            <br> 
-
-            <br> Age:
-            <br> <input type="radio" name="age" value="child"> Child </input>
-                 <input type="radio" name="age" value="teen"> Teenager </input>
-                 <input type="radio" name="age" value="ya"> Young adult </input>
-                 <input type="radio" name="age" value="adult"> Adult </input>
-                 <input type="radio" name="age" value="old"> Elder </input>
-            <br> 
-
-            <br> How influential is this person? <br>
-            <input type="range" name="influence">
-
-            <br> Groups: 
-            <div id="groups"> Set up village groups! </div>
-
-
-            <div class="option-spacing"> </div>
+            <hr>
+            Name: <input type="text" name="name" maxlength="60"/> 
+            <br> About this group: <br> <textarea name="bio" rows="4" cols="60"> </textarea>
             <br>
-            <button type="submit" value="OK">Submit</button>
+            <button type="submit" value="OK">Add Group</button>
+            <br>
+            <button type="submit" value="OK">Done Adding Groups </button>
+            <div id="groups"></div>
+            <hr>
+
         </p>
     </form>
 </body>
