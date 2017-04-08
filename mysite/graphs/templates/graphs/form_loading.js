@@ -2,7 +2,7 @@ var person_form = '<hr> <form id="person_form" method="post" action="javascript:
         '<p>' +
             'Name: <input type="text" name="name" maxlength="30"/>' +
             '<div class="option-spacing"> </div>' +
-            '<br> Personal Info: <br> <textarea name="bio" rows="4" cols="60"> </textarea> ' +
+            '<br> Personal Info: <br> <textarea id="bio" name="bio" rows="4" cols="60"> </textarea> ' +
             '<br>            ' +
             '<br> Gender: ' +
             '<br> <input type="radio" name="gender" id="genderm" value="Male"> M </input> ' +
@@ -29,7 +29,7 @@ var group_form = '<form id="group_form" method="post" action="javascript:display
         '<p>' +
             '<hr>'+
             'Name: <input type="text" name="gname" maxlength="60"/> '+
-            '<br> About this group: <br> <textarea name="gbio" rows="4" cols="60"> </textarea>'+
+            '<br> About this group: <br> <textarea id="bio" name="gbio" rows="4" cols="60"> </textarea>'+
             '<br>'+
             '<button>Add Group</button>'+
             '<br>'+
@@ -45,7 +45,7 @@ var relationship_form = '<form id="group_form" method="post" action="javascript:
             'Who is this relationship between?'+
             '<div id="inhabitants"></div>'+
             '<br>'+
-            'Notes: <br> <textarea name="notes" rows="4" cols="60"> </textarea>'+
+            'Notes: <br> <textarea id="bio" name="notes" rows="4" cols="60"> </textarea>'+
             '<br> <br>'+
             'What is the quality of this relationship? <br>'+
             '<input type="radio" name="quality" value="positive"> Positive </input>'+
@@ -72,7 +72,12 @@ var options = "";
 
 function display_rel(){
     var relstring = "Relationships:";
-    add_rel();
+    newrel = add_rel();
+
+    friendly = "<br>" + newrel.party1 + " and " + newrel.party2 + " have a " +
+               newrel.quality + " relationship with strength " + newrel.strength;
+
+    $("#rels").html($("#rels").html() + friendly);
 
 }
 
@@ -80,8 +85,15 @@ function add_rel(){
     var party1 = $("#box1").val();
     var party2 = $("#box2").val();
     var quality = $("input[name='quality']:checked").val();
-    var notes = $("input[name='notes']").val();
+    var notes = $("#bio").val();
     var strength = $("input[name='strength'").val();
+
+    var newrel = {"party1":party1, "party2":party2, "quality":quality,
+                    "notes":notes, "strength":strength};
+    relations.push();
+    return newrel;
+
+    update_server("/add_rel");
 }
 
 function display_group(){
@@ -99,11 +111,13 @@ function display_group(){
 
 function add_group(){
     var name = $("input[name='gname']").val();
-    var bio = $("input[name='gbio'").val();
+    var bio = $("#bio").val();
     groups.push({"name": name, "bio": bio});
 
     options = options + "<option name='" + name + "'value='" + name + "'>" + name + "</option>";
-    gchecks = gchecks + "<input type='checkbox' name='" + name +"'>" + name + "</input> <br>"; 
+    gchecks = gchecks + "<input type='checkbox' name='" + name +"'>" + name + "</input> <br>";
+
+    update_server("/add_group"); 
 }
 
 
@@ -111,7 +125,7 @@ function display_data() {
     var gender = $("input[name='gender']:checked").val();
     var age    = $("input[name='age']:checked").val();
     var name   = $("input[name='name']").val();
-    var bio    = $("input[name='bio']").val();
+    var bio    = $("#bio").val();
     var inf    = $("input[name='influence']").val();
     var gps    = [];
 
@@ -134,6 +148,7 @@ function display_data() {
     close_form();
 
     $('#form').html(person_form);
+    update_server("/add_person");
 }
 
 
@@ -146,6 +161,12 @@ function open_form(form){
     $('#form').html(form);
     $('#form').show();
     $('.option').hide();
+}
+
+function update_server(url, data){
+    $.post(url, data, function(){
+        console.log("served " + data);
+    })
 }
 
 $(document).ready(function(){
@@ -167,5 +188,4 @@ $(document).ready(function(){
         var box2 = "<select id='box2'>" + options + "</select>";
         $("#inhabitants").html(box1 + " " + box2);
     });
-
 });
