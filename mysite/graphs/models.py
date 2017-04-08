@@ -4,7 +4,7 @@ from django.contrib.contenttypes.fields import GenericForeignKey
 
 class NamedEntity(models.Model):
     name = models.CharField(max_length=100)
-    desc = models.TextField(max_length=1000)
+    desc = models.TextField(max_length=1000, blank=True)
 
     class Meta:
         abstract = True
@@ -13,7 +13,7 @@ class Case(NamedEntity):
     pass
 
 class Village(NamedEntity):
-    case = models.ForeignKey(Case, on_delete=models.CASCADE)
+    case = models.ForeignKey(Case, on_delete=models.CASCADE, related_name="villages")
 
 class Group(NamedEntity):
     village = models.ForeignKey(Village, on_delete=models.CASCADE, null=True)
@@ -45,12 +45,31 @@ class Person(NamedEntity):
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES, default=MALE)
     village = models.ForeignKey(Village, on_delete=models.CASCADE, null=True)
 
-class Relationship(models.Model):
-    status = models.IntegerField(default=0)
+    def __str__(self):
+        return self.name
+
+class RelationshipBase(models.Model):
+    POSITIVE = "PS"
+    NEGATIVE = "NG"
+    NEUTRAL = "NT"
+
+    STATUS_CHOICES = (
+        (POSITIVE, "Positive"),
+        (NEGATIVE, "Negative"),
+        (NEUTRAL, "Neutral")
+    )
+
+    status = models.CharField(choices=STATUS_CHOICES, max_length=2, default=NEUTRAL)
     strength = models.IntegerField(default=0)
-    content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE, null=True)
-    objid1 = models.PositiveIntegerField(default=0)
-    objid2 = models.PositiveIntegerField(default=0)
-    endpt1 = GenericForeignKey('content_type', 'objid1')
-    endpt2 = GenericForeignKey('content_type', 'objid2')
-    details = models.TextField(max_length=500)
+    details = models.TextField(max_length=500, blank=True)
+
+    class Meta:
+        abstract = True
+
+class GroupRelationship(RelationshipBase):
+    g1 = models.ForeignKey(Group, on_delete=models.CASCADE, related_name="rel1")
+    g2 = models.ForeignKey(Group, on_delete=models.CASCADE, related_name="rel2")
+
+class PersonRelationship(RelationshipBase):
+    p1 = models.ForeignKey(Person, on_delete=models.CASCADE, related_name="rel1")
+    p2 = models.ForeignKey(Person, on_delete=models.CASCADE, related_name="rel2")
