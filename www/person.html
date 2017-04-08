@@ -8,8 +8,39 @@
     <link href="style.css" rel="stylesheet"/>
 </head>
 
-
 <body>
-    <h1> This page will be a form used to enter a person! </h1>
+    <h1> Person Entry Form </h1>
+    <form method="POST" action="/sub_group">
+        <p> 
+            Name: <input type="text" name="name" maxlength="30"/> 
+            <div class="option-spacing"> </div>
+            <br> Personal Info: <br> <textarea name="bio" rows="4" cols="60"> </textarea>
+    
+            <br>            
+            <br> Gender:
+            <br> <input type="radio" name="gender" value="Male"> M </input>
+                 <input type="radio" name="gender" value="Female"> F </input>
+            <br> 
+
+            <br> Age:
+            <br> <input type="radio" name="age" value="child"> Child </input>
+                 <input type="radio" name="age" value="teenager"> Teenager </input>
+                 <input type="radio" name="age" value="ya"> Young adult </input>
+                 <input type="radio" name="age" value="adult"> Adult </input>
+                 <input type="radio" name="age" value="elder"> Elder </input>
+            <br> 
+
+            <br> How influential is this person? <br>
+            <input type="range" name="Influence">
+
+            <br> Groups: 
+            <div id="groups"> Set up village groups! </div>
+
+
+            <div class="option-spacing"> </div>
+            <br>
+            <button type="button" onclick="alert('This will submit, redirect')">Submit</button>
+        </p>
+    </form>
 </body>
 </html>

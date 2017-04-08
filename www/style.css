@@ -1,7 +1,10 @@
 body{
-    background-color: #81F7D8;
+    background-color: #ffffcc;
     font-family : helvetica;
-    text-align  : center;
+    text-align  : left;
     font-size : 16px;
-    color : white;
+}
+
+h1{
+    text-align : center;
 }
